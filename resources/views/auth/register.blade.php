@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="http://127.0.0.1:8001/api/register">
         @csrf
 
         <!-- Name -->

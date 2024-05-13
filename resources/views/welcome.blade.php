@@ -56,32 +56,42 @@
 
     // Función para mostrar los libros en la página
     function mostrarLibros(libros) {
-        var listaLibros = document.getElementById('listaLibros');
-        listaLibros.innerHTML = ''; // Limpiar resultados anteriores
+    var listaLibros = document.getElementById('listaLibros');
 
-        libros.forEach(libro => {
-            var card = document.createElement('div');
-            card.classList.add('bg-white', 'shadow-lg', 'rounded-lg', 'p-4');
+    // Limpiar resultados anteriores
+    listaLibros.innerHTML = '';
 
-            var titulo = document.createElement('h2');
-            titulo.classList.add('text-lg', 'font-semibold', 'mb-2');
-            titulo.textContent = libro.titulo;
+    libros.forEach(libro => {
+        // Crear un nuevo elemento de anclaje <a>
+        var enlace = document.createElement('a');
+        enlace.href = "/libros/" + libro.id; // Establecer el href del enlace
 
-            var autor = document.createElement('p');
-            autor.classList.add('text-gray-600', 'mb-4');
-            autor.textContent = 'Autor: ' + libro.autor;
+        var card = document.createElement('div');
+        card.classList.add('bg-white', 'shadow-lg', 'rounded-lg', 'p-4');
 
-            var descripcion = document.createElement('p');
-            descripcion.classList.add('text-gray-700');
-            descripcion.textContent = libro.descripcion;
+        var titulo = document.createElement('h2');
+        titulo.classList.add('text-lg', 'font-semibold', 'mb-2');
+        titulo.textContent = libro.titulo;
 
-            card.appendChild(titulo);
-            card.appendChild(autor);
-            card.appendChild(descripcion);
+        var autor = document.createElement('p');
+        autor.classList.add('text-gray-600', 'mb-4');
+        autor.textContent = 'Autor: ' + libro.autor;
 
-            listaLibros.appendChild(card);
-        });
-    }
+        var descripcion = document.createElement('p');
+        descripcion.classList.add('text-gray-700');
+        descripcion.textContent = libro.descripcion;
+
+        card.appendChild(titulo);
+        card.appendChild(autor);
+        card.appendChild(descripcion);
+
+        // Agregar la tarjeta al enlace
+        enlace.appendChild(card);
+
+        // Agregar el enlace a la lista de libros
+        listaLibros.appendChild(enlace);
+    });
+}
 
     // Escuchar el evento keypress en el campo de búsqueda para buscar al presionar Enter
     document.getElementById('buscarInput').addEventListener('keypress', function(event) {
